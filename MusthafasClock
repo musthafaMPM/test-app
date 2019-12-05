@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="App will display alerts set by the user and through the emergency alert interface">
+<!--Jinja variables-->
+<meta type="text" name="widget_name" label="Widget Name" help="">
+<meta type="text" name="json_url" label="JSON URL" help="Server URL without trailing slash">
+<meta type="bool" name="static_text" label="Static Text" value="false">
+<meta type="color" name="font_color" label="Font Color" value="#FFFFFF">
+<meta type="color" name="bg_color" label="Background Color" value="#333333">
+<meta type="image" name="bg_image" label="Background Image" optional>
+
+<title>Emergency Alert Widget v Musthafa</title>
+<script type="text/javascript" src="{{media.allscripts.url}}"></script>
+<!--Fonts-->
+<style type="text/css"  media="screen">
+    
+   
+    @font-face {
+  font-family: 'RobotoCondensed';
+  src: url('roboto-condensed.woff') format('woff');
+}
+    
+body{
+  color: {{font_color}};
+  background-color: {{bg_color}};
+  {% if bg_image %}
+  background-image: url('{{bg_image.url}}');
+  {% endif %}
+
+}
+</style>
+<!-- All CSS -->
+<link href="{{media.allstyles.url}}" rel="stylesheet" />
+</head>
+
+<body>
+
+<script type="text/javascript">
+  var jsonUrl = "{{json_url}}/get-json.php";
+  var staticText = "{{static_text}}";
+  initializeWidget(jsonUrl,staticText);
+</script>
+
+<div>
+  <h1 class="alert-text-1" id="alert-text-1"></h1>
+</div>
+<div class="marquee">
+  <h1 class="alert-text-2" id="alert-text-2"></h1>
+</div>
+</body>
+</html>
